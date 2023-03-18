@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>CS4249 Logging Prototype</title>
+<script src="logging.js"></script>
+<style>
+	#container {
+		display: grid;
+		place-items: center;
+		height: 100vh;
+	}
+
+	#myButton {
+		background-color: #2D2D2D;
+		border-radius: 16px;
+		display: inline-block;
+		cursor: pointer;
+		color: #ffffff;
+		font-family: Trebuchet MS;
+		font-size: 48px;
+		padding: 40px 60px;
+		text-decoration: none;
+		border: none;
+  	box-shadow: 0 20px #000000;
+		transition: transform 25ms ease-in, box-shadow 25ms ease-in;
+	}
+
+	#myButton:active {
+		background-color: #000000;
+  	box-shadow: 0 0 #000000;
+    transform: translateY(20px);
+	}
+</style>
+</head>
+
+<body>
+
+<script>
+	function sendCustomEvent() {
+		console.log('sendCustomEvent');
+		document.dispatchEvent(new CustomEvent('myevent', { detail: {
+			eventName: 'myeventName',
+			info: {'key1': 'val1', 'key2': 'val2'}
+		}}));
+	}
+	document.addEventListener('myevent', loggingjs.logEvent, true);
+</script>
+
+<div id="container">
+	<button id="myButton" ontouchstart="sendCustomEvent()">Button</button>
+</div>
+
+</body>
+
+</html>
